@@ -1,0 +1,11 @@
+obj/FirstOOPProject.csproj.nuget.dgspec.json
+obj/FirstOOPProject.csproj.nuget.g.props
+obj/FirstOOPProject.csproj.nuget.g.targets
+obj/project.assets.json
+obj/project.nuget.cache
+obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+obj/Debug/net8.0/FirstOOPProject.AssemblyInfo.cs
+obj/Debug/net8.0/FirstOOPProject.AssemblyInfoInputs.cache
+obj/Debug/net8.0/FirstOOPProject.assets.cache
+obj/Debug/net8.0/FirstOOPProject.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net8.0/FirstOOPProject.GlobalUsings.g.cs
