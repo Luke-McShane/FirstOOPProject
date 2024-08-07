@@ -1,3 +1,5 @@
+namespace Vehicles.VehicleAspects;
+
 public enum Colour
 {
   Blue,

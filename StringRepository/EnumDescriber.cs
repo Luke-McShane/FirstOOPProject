@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 
+namespace StringRepository;
 public static class EnumDescriber
 {
   public static string Wordify(string pascalCaseString)

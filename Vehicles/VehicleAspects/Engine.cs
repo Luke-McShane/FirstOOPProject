@@ -1,4 +1,5 @@
-public class Engine : Damageable
+namespace Vehicles.VehicleAspects;
+public class Engine(double litres) : Damageable
 {
-  public float Litres { get; set; }
+  public double Litres { get; init; } = litres;
 }

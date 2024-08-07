@@ -1,6 +1,18 @@
-public abstract class Vehicle(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : IVehicle
+
+
+using Vehicles.VehicleAspects;
+
+namespace Vehicles;
+
+public abstract class Vehicle(Wheels wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : IVehicle
 {
-  public List<Wheel> Wheels { get; set; } = wheels;
+  // protected Vehicle(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name)
+  // {
+  //     TopSpeed = topSpeed;
+  //     Name = name;
+  // }
+
+  public Wheels Wheels { get; set; } = wheels;
   public Suspension Suspension { get; set; } = suspension;
   public Engine Engine { get; set; } = engine;
   public FuelTank FuelTank { get; set; } = fuelTank;

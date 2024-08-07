@@ -1,6 +1,10 @@
+using Vehicles.VehicleAspects;
+
+namespace Vehicles.VehicleTypes;
 public abstract class SportsCar : Vehicle
 {
-  protected SportsCar(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : base(wheels, suspension, engine, fuelTank, colour, topSpeed, mpg, name)
+  protected SportsCar(Wheels wheels, Colour colour, int topSpeed, int mpg, string name) :
+  base(wheels, new Suspension(SuspensionType.Hard), new Engine(5.5), new FuelTank(80, 80), colour, topSpeed, mpg, name)
   {
   }
 }

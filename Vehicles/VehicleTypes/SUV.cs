@@ -1,6 +1,10 @@
+using Vehicles.VehicleAspects;
+
+namespace Vehicles.VehicleTypes;
 public abstract class SUV : Vehicle
 {
-  protected SUV(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : base(wheels, suspension, engine, fuelTank, colour, topSpeed, mpg, name)
+  protected SUV(Wheels wheels, Colour colour, int topSpeed, int mpg, string name) :
+  base(wheels, new Suspension(SuspensionType.Soft), new Engine(3.5), new FuelTank(90, 90), colour, topSpeed, mpg, name)
   {
   }
 }
