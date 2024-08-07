@@ -26,3 +26,22 @@ public abstract class Vehicle(List<Wheel> wheels, Suspension suspension, Engine 
     throw new NotImplementedException();
   }
 }
+
+public interface IVehicle
+{
+  public void Refuel(int amount);
+  public void Drive(int distance);
+}
+
+public enum Vehicles
+{
+  FordFocus,
+  FiatPanda,
+  RangeRover,
+  JeepWrangler,
+  KawasakiNinja,
+  KTMEnduro,
+  MercedesSLK,
+  LamborghiniGallardo
+
+}
