@@ -1,14 +1,18 @@
 ﻿
 using System.Dynamic;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
-public static class Program
+Main.Run();
+
+public static class Main
 {
   private static readonly Random getRandom = new Random();
   private static readonly string newLine = Environment.NewLine;
   private static readonly List<string> cities = new List<string> {"London", "Birmingham", "Edinburgh", "Sheffield",
         "Nottingham", "Leeds", "Glasgow", "Cardiff", "Aberystwyth", "Manchester"};
-  private static readonly string city = cities[GetRandomnNumber(0, cities.Count - 1, getRandom)];
-  private static readonly int daysToComplete = GetRandomnNumber(6, 12, getRandom);
+  private static readonly string city = cities[GetRandomNumber(0, cities.Count - 1, getRandom)];
+  private static readonly int daysToComplete = GetRandomNumber(6, 12, getRandom);
   public static int Money { get; set; } = 12000;
   public static void Run()
   {
@@ -24,13 +28,25 @@ public static class Program
                                 {newLine}--> The stress level of your driver.
                                 {newLine}--> How much cash you had to spare.
                                 {newLine}--> How 'cool' your car is (a paintjob will help in this regard).");
-  }
+    System.Console.WriteLine("Please select one of the following vehicles by typing the corresponding number:" + newLine);
+    PrintVehicles();
+    int userCar =
 
-  private static int GetRandomnNumber(int min, int max, Random getRandom)
+  }
+  public static int GetRandomNumber(int min, int max, Random getRandom)
   {
     lock (getRandom)
     {
       return getRandom.Next(min, max);
+    }
+  }
+
+  static void PrintVehicles()
+  {
+    foreach (Vehicles vehicle in Enum.GetValues(typeof(Vehicles)))
+    {
+      // System.Console.WriteLine("Vehicle is: " + Enum.GetName(typeof(Vehicles), vehicle));
+      Console.WriteLine($"{(int)vehicle + 1}. {EnumDescriber.Wordify(Enum.GetName(typeof(Vehicles), vehicle))}");
     }
   }
 }
@@ -50,7 +66,8 @@ public abstract class Vehicle(List<Wheel> wheels, Suspension suspension, Engine 
   public int TopSpeed { get; init; } = topSpeed;
   public double MilesUntilNoFuel { get; set; } = GetMilesUntilNoFuel(mpg, fuelTank.RemaningFuelInLitres);
   public int MilesPerGallon { get; } = mpg;
-  public string Name { get; } = name
+  public string Name { get; } = name;
+
 
   public static double GetMilesUntilNoFuel(int mpg, int litresOfFuelLeft)
   {
@@ -65,6 +82,34 @@ public abstract class Vehicle(List<Wheel> wheels, Suspension suspension, Engine 
   public void Refuel(int amount)
   {
     throw new NotImplementedException();
+  }
+}
+
+public abstract class SportsCar : Vehicle
+{
+  protected SportsCar(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : base(wheels, suspension, engine, fuelTank, colour, topSpeed, mpg, name)
+  {
+  }
+}
+
+public abstract class Motorbike : Vehicle
+{
+  protected Motorbike(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : base(wheels, suspension, engine, fuelTank, colour, topSpeed, mpg, name)
+  {
+  }
+}
+
+public abstract class SUV : Vehicle
+{
+  protected SUV(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : base(wheels, suspension, engine, fuelTank, colour, topSpeed, mpg, name)
+  {
+  }
+}
+
+public abstract class Hatchback : Vehicle
+{
+  protected Hatchback(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : base(wheels, suspension, engine, fuelTank, colour, topSpeed, mpg, name)
+  {
   }
 }
 
@@ -144,34 +189,6 @@ public enum Cities
   Manchester
 };
 
-public abstract class SportsCar : Vehicle
-{
-  protected SportsCar(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : base(wheels, suspension, engine, fuelTank, colour, topSpeed, mpg, name)
-  {
-  }
-}
-
-public abstract class Motorbike : Vehicle
-{
-  protected Motorbike(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : base(wheels, suspension, engine, fuelTank, colour, topSpeed, mpg, name)
-  {
-  }
-}
-
-public abstract class SUV : Vehicle
-{
-  protected SUV(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : base(wheels, suspension, engine, fuelTank, colour, topSpeed, mpg, name)
-  {
-  }
-}
-
-public abstract class Hatchback : Vehicle
-{
-  protected Hatchback(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : base(wheels, suspension, engine, fuelTank, colour, topSpeed, mpg, name)
-  {
-  }
-}
-
 public enum Vehicles
 {
   FordFocus,
@@ -180,7 +197,16 @@ public enum Vehicles
   JeepWrangler,
   KawasakiNinja,
   KTMEnduro,
-  BMWM3,
+  MercedesSLK,
   LamborghiniGallardo
 
+}
+
+public static class EnumDescriber
+{
+  public static string Wordify(string pascalCaseString)
+  {
+    Regex r = new Regex("(?<=[a-z])(?<x>[A-Z])|(?<=.)(?<x>[A-Z])(?=[a-z])");
+    return r.Replace(pascalCaseString, " ${x}");
+  }
 }
