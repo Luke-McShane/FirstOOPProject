@@ -56,7 +56,32 @@ public static class PlayGame
 
   public static void VehicleBuilder(int index)
   {
+    Vehicle vehicle;
+    Vehicles.Vehicles vehicleChoice = (Vehicles.Vehicles)index - 1;
     System.Console.WriteLine("Your choice of vehicle: " + EnumDescriber.Wordify(VehicleToString((Vehicles.Vehicles)index - 1)));
+    System.Console.WriteLine(vehicleChoice);
+    switch (vehicleChoice)
+    {
+      case Vehicles.Vehicles.FordFocus:
+        Vehicle userVehicle = new Hatchback(new Wheels());
+        break;
+      case Vehicles.Vehicles.FiatPanda:
+        System.Console.WriteLine("f2");
+        break;
+      case Vehicles.Vehicles.RangeRover:
+        break;
+      case Vehicles.Vehicles.JeepWrangler:
+        break;
+      case Vehicles.Vehicles.KawasakiNinja:
+        break;
+      case Vehicles.Vehicles.KTMEnduro:
+        break;
+      case Vehicles.Vehicles.MercedesSLK:
+        break;
+      case Vehicles.Vehicles.LamborghiniGallardo:
+        break;
+
+    }
   }
 
   public static int GetRandomNumber(int min, int max, Random getRandom)
