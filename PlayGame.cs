@@ -73,6 +73,7 @@ public static class PlayGame
         if (upgradeChoice == "Y" && (Money - 500) > 0)
         {
           Console.WriteLine($"You upgrade of {TyreType.Winter} tyres has been applied to your {vehicleChoiceUserReadable}! You have {Money} remaining of your budget");
+          Money -= 500;
         }
         else if (upgradeChoice != "N")
         {
@@ -88,6 +89,7 @@ public static class PlayGame
         upgradeChoice = Console.ReadLine().ToUpper();
         if (upgradeChoice == "Y" && (Money - 1000) > 0)
         {
+          Money -= 1000;
           Console.WriteLine($"Your turbocharger has been fitted to your {vehicleChoiceUserReadable}! You have {Money} remaining of your budget");
         }
         else if (upgradeChoice != "N")
@@ -101,8 +103,9 @@ public static class PlayGame
       {
         Console.WriteLine("Would you like to swap out your driver for someone more calm and collected? This will help the journey run smoothly and your score will be increased if you make it to the destination if your driver is less stressed. (-£750)");
         upgradeChoice = Console.ReadLine().ToUpper();
-        if (upgradeChoice == "Y" && (Money - 500) > 0)
+        if (upgradeChoice == "Y" && (Money - 750) > 0)
         {
+          Money -= 750;
           Console.WriteLine($"You now have a more relaxed driver! You have {Money} remaining of your budget");
         }
         else if (upgradeChoice != "N")
@@ -118,6 +121,7 @@ public static class PlayGame
         upgradeChoice = Console.ReadLine().ToUpper();
         if (upgradeChoice == "Y" && (Money - 500) > 0)
         {
+          Money -= 500;
           Console.WriteLine($"Your snazzy paint job has been applied to your {vehicleChoiceUserReadable}! You have {Money} remaining of your budget, and no more upgrades are available.");
         }
         else if (upgradeChoice != "N")
@@ -132,7 +136,7 @@ public static class PlayGame
     switch (vehicleChoice)
     {
       case Vehicles.Vehicles.FordFocus:
-        Vehicle userVehicle = new Hatchback(new Wheels());
+        // Vehicle userVehicle = new Hatchback(new Wheels());
         break;
       case Vehicles.Vehicles.FiatPanda:
         Console.WriteLine("f2");
@@ -163,10 +167,19 @@ public static class PlayGame
 
   static void PrintVehicles()
   {
-    foreach (Vehicles.Vehicles vehicle in Enum.GetValues(typeof(Vehicles.Vehicles)))
+    // foreach (Vehicles.Vehicles vehicle in Enum.GetValues(typeof(Vehicles.Vehicles)))
+    // {
+    //   // System.Console.WriteLine("Vehicle is: " + Enum.GetName(typeof(Vehicles), vehicle));
+    //   Console.WriteLine($"{(int)vehicle + 1}. {EnumDescriber.Wordify(VehicleToString(vehicle))}");
+
+    // }
+    for (int i = 0; i < nameof(Vehicles.Vehicles).Length; ++i)
     {
+      string local = Enum.GetName(typeof(VehicleCosts), i);
       // System.Console.WriteLine("Vehicle is: " + Enum.GetName(typeof(Vehicles), vehicle));
-      Console.WriteLine($"{(int)vehicle + 1}. {EnumDescriber.Wordify(VehicleToString(vehicle))}");
+      // Console.WriteLine($"{i + 1}. {EnumDescriber.Wordify(VehicleToString((Vehicles.Vehicles)i + 1))}. Cost: {(VehicleCosts)i + 1}");
+      System.Console.WriteLine((int)(VehicleCosts)i);
+
     }
   }
 }

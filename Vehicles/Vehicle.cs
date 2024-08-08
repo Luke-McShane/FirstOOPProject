@@ -57,3 +57,15 @@ public enum Vehicles
   LamborghiniGallardo
 
 }
+
+public enum VehicleCosts
+{
+  FordFocus = 5000,
+  FiatPanda = 3500,
+  RangeRover = 9000,
+  JeepWrangler = 8000,
+  KawasakiNinja = 5000,
+  KTMEnduro = 4500,
+  MercedesSLK = 10000,
+  LamborghiniGallardo = 11000
+}
