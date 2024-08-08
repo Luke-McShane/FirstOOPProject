@@ -27,7 +27,7 @@ public static class PlayGame
                                 {newLine}--> The stress level of your driver.
                                 {newLine}--> How much cash you had to spare.
                                 {newLine}--> How 'cool' your car is (a paintjob will help in this regard).");
-    System.Console.WriteLine("Please select one of the following vehicles by typing the corresponding number:" + newLine);
+    System.Console.WriteLine("Please select one of the following vehicles by typing the corresponding number Please note the cost of the car, as this take up part of your budget:" + newLine);
     PrintVehicles();
     do
     {
@@ -58,8 +58,31 @@ public static class PlayGame
   {
     Vehicle vehicle;
     Vehicles.Vehicles vehicleChoice = (Vehicles.Vehicles)index - 1;
+    string vehicleChoiceUserReadable = EnumDescriber.Wordify(VehicleToString((Vehicles.Vehicles)index - 1));
     System.Console.WriteLine("Your choice of vehicle: " + EnumDescriber.Wordify(VehicleToString((Vehicles.Vehicles)index - 1)));
-    System.Console.WriteLine(vehicleChoice);
+    System.Console.WriteLine($"You now have the option to customise your {vehicleChoiceUserReadable}. Please type 'Y' or 'N' for each possible upgrade presented to you:");
+    bool choiceToUpgrade = true;
+    string upgradeChoice;
+    string userPointInUpgradeDecision = "Tyres";
+    do
+    {
+      if (userPointInUpgradeDecision == "Tyres")
+      {
+        System.Console.WriteLine("Would you like to upgrade your tyres to winter tyres? These will help cross muddy terrain if it has been raining. (-£500)");
+        upgradeChoice = Console.ReadLine().ToUpper();
+        if (upgradeChoice == "Y" && (Money - 500) > 0)
+        {
+          System.Console.WriteLine("You upgrade of {} has been applied to your {}! You have {} remaining of your budget");
+        }
+        else if (upgradeChoice != "N")
+        {
+          System.Console.WriteLine("Invalid input. Please try again.");
+          continue;
+        }
+        userPointInUpgradeDecision == 
+      }
+    } while (choiceToUpgrade);
+    System.Console.WriteLine();
     switch (vehicleChoice)
     {
       case Vehicles.Vehicles.FordFocus:
