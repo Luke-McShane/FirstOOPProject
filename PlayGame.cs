@@ -173,15 +173,11 @@ public static class PlayGame
     //   Console.WriteLine($"{(int)vehicle + 1}. {EnumDescriber.Wordify(VehicleToString(vehicle))}");
 
     // }
-    Array vehicleValues = Enum.GetValues(VehicleCosts);
-    System.Console.WriteLine("Type of: " + typeof(VehicleCosts));
-    System.Console.WriteLine("GetValues: " + Enum.GetValues(typeof(VehicleCosts)));
+    Array vehicleValues = Enum.GetValues(typeof(VehicleCosts));
+    System.Console.WriteLine("You have £12000 in your budget. Please choose your car wisely.");
     for (int i = 0; i < nameof(Vehicles.Vehicles).Length; ++i)
     {
-      // System.Console.WriteLine("Vehicle is: " + Enum.GetName(typeof(Vehicles), vehicle));
-      // Console.WriteLine($"{i + 1}. {EnumDescriber.Wordify(VehicleToString((Vehicles.Vehicles)i + 1))}. Cost: {(VehicleCosts)i + 1}");
-      System.Console.WriteLine((int)(VehicleCosts)vehicleValues.GetValue(i));
-
+      Console.WriteLine($"{i + 1}. {EnumDescriber.Wordify(VehicleToString((Vehicles.Vehicles)i + 1))}. Cost: £{(int)(VehicleCosts)vehicleValues.GetValue(i)}");
     }
   }
 }
