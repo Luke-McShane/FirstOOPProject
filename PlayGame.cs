@@ -2,6 +2,7 @@ using Vehicles;
 using Vehicles.VehicleAspects;
 using Vehicles.VehicleTypes;
 using StringRepository;
+using System.Collections;
 
 public static class PlayGame
 {
@@ -49,9 +50,32 @@ public static class PlayGame
     return Enum.GetName(typeof(Vehicles.Vehicles), vehicle);
   }
 
+
+  private Vehicle buildVehicle(Vehicles.Vehicles vehicle)
+  {
+    switch (vehicle)
+    {
+      case Vehicles.Vehicles.FordFocus:
+        return new Hatchback("Ford Focus");
+      case Vehicles.Vehicles.FiatPanda:
+        return new Hatchback("Fiat Panda");
+      case Vehicles.Vehicles.JeepWrangler:
+        return new Hatchback("Jeep Wrangler");
+      case Vehicles.Vehicles.KawasakiNinja:
+        return new Hatchback("Kawasaki Ninja");
+      case Vehicles.Vehicles.KTMEnduro:
+        return new Hatchback("KTM Enduro");
+      case Vehicles.Vehicles.LamborghiniGallardo:
+        return new Hatchback("Lamborghini Gallardo");
+      case Vehicles.Vehicles.MercedesSLK:
+        return new Hatchback("Mercedes SLK");
+      case Vehicles.Vehicles.RangeRover:
+        return new Hatchback("Range Rover");
+
+    }
+  }
   public static void VehicleBuilder(int index)
   {
-    Vehicle vehicle;
     Vehicles.Vehicles vehicleChoice = (Vehicles.Vehicles)index - 1;
     string vehicleChoiceUserReadable = EnumDescriber.Wordify(VehicleToString((Vehicles.Vehicles)index - 1));
     Console.WriteLine($"Your choice of vehicle: {EnumDescriber.Wordify(VehicleToString((Vehicles.Vehicles)index - 1))}{newLine}");

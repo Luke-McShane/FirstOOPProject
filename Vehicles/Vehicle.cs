@@ -4,7 +4,7 @@ using Vehicles.VehicleAspects;
 
 namespace Vehicles;
 
-public abstract class Vehicle(Wheels wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name) : IVehicle
+public abstract class Vehicle(string name, FuelTank fuelTank) : IVehicle
 {
   // protected Vehicle(List<Wheel> wheels, Suspension suspension, Engine engine, FuelTank fuelTank, Colour colour, int topSpeed, int mpg, string name)
   // {
@@ -12,14 +12,14 @@ public abstract class Vehicle(Wheels wheels, Suspension suspension, Engine engin
   //     Name = name;
   // }
 
-  public Wheels Wheels { get; set; } = wheels;
-  public Suspension Suspension { get; set; } = suspension;
-  public Engine Engine { get; set; } = engine;
+  public Wheels Wheels { get; set; }
+  public Suspension Suspension { get; set; }
+  public Engine Engine { get; set; }
   public FuelTank FuelTank { get; set; } = fuelTank;
-  public Colour Colour { get; set; } = colour;
-  public int TopSpeed { get; init; } = topSpeed;
-  public double MilesUntilNoFuel { get; set; } = GetMilesUntilNoFuel(mpg, fuelTank.RemaningFuelInLitres);
-  public int MilesPerGallon { get; } = mpg;
+  public Colour Colour { get; set; }
+  public int TopSpeed { get; init; }
+  public double MilesUntilNoFuel { get; set; } //= GetMilesUntilNoFuel(mpg, fuelTank.RemaningFuelInLitres);
+  public int MilesPerGallon { get; }
   public string Name { get; } = name;
 
 
